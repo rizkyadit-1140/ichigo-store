@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ichigo Store - Top Up Diamond</title>
+    <!-- Menambahkan FontAwesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Menghubungkan ke file CSS eksternal -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigasi -->
+    <div class="navbar">
+        <div class="logo">🍓 ICHIGOSTORE</div>
+        <div class="search-container">
+            <input type="text" class="search-bar" id="searchInput" placeholder="Cari diamond game favorit anda">
+            <div class="search-icon" id="searchBtn"><i class="fas fa-search"></i></div>
+        </div>
+        <div class="nav-right">
+            <i class="fas fa-user" title="Profil"></i>
+            <i class="fas fa-bell" title="Notifikasi"></i>
+            <button class="btn-login" id="loginBtn">Masuk</button>
+        </div>
+    </div>
+
+    <!-- Konten Utama -->
+    <div class="container">
+
+        
+        <!-- Banner Promo -->
+        <div class="hero-banner">
+            <img src="imagas/BANNER.jpg" alt="Welcome to Ichigo Store Banner">
+        </div>
+        <div class="dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+
+        <!-- Daftar Game -->
+        <h3 class="section-title">Pilih Game Favoritmu</h3>
+        <div class="game-grid">
+            
+            <a href="topup-ml.html" class="game-card" style="display: block;">
+                <img src="imagas/ML.jpeg" alt="Mobile Legends" class="game-img">
+                <div class="game-title">Mobile Legends</div>
+            </a>
+
+            <a href="topup-genshin.html" class="game-card" style="display: block;">
+                <img src="imagas/GI.jpeg" alt="Genshin Impact" class="game-img">
+                <div class="game-title">Genshin Impact</div>
+            </a>
+
+            <a href="topup-ff.html" class="game-card" style="display: block;">
+                <img src="imagas/FF.jpeg" alt="Free Fire" class="game-img">
+                <div class="game-title">Free Fire</div>
+            </a>
+
+            <a href="topup-pubg.html" class="game-card" style="display: block;">
+                <img src="imagas/PUBG.jpeg" alt="PUBG Mobile" class="game-img">
+                <div class="game-title">PUBG Mobile</div>
+            </a>
+
+            <a href="topup-valorant.html" class="game-card" style="display: block;">
+                <img src="imagas/VALO.jpeg" alt="Valorant" class="game-img">
+                <div class="game-title">Valorant</div>
+            </a>
+
+            <a href="topup-csgo.html" class="game-card" style="display: block;">
+                <img src="imagas/CSGO.jpeg" alt="Counter-Strike 2" class="game-img">
+                <div class="game-title">Counter-Strike 2</div>
+            </a>
+
+            <a href="topup-roblox.html" class="game-card" style="display: block;">
+                <img src="imagas/ROBLOX.jpeg" alt="Roblox" class="game-img">
+                <div class="game-title">Roblox</div>
+            </a>
+
+            <a href="topup-wuwa.html" class="game-card" style="display: block;">
+                <img src="imagas/WUWA.jpeg" alt="Wuthering Waves" class="game-img">
+                <div class="game-title">Wuthering Waves</div>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div>
+            <div class="footer-logo">🍓 ICHIGOSTORE</div>
+            <p>Ichigo Store merupakan platform layanan top-up terkemuka dengan transaksi yang cepat, aman, dan terpercaya.</p>
+        </div>
+        
+        <div>
+            <h4>Metode Pembayaran</h4>
+            <div class="payment-icons">
+                <i class="fas fa-wallet"></i>
+                <i class="fas fa-credit-card"></i>
+                <i class="fab fa-cc-visa"></i>
+                <i class="fas fa-qrcode"></i>
+            </div>
+        </div>
+
+        <div>
+            <h4>Sosial Media</h4>
+            <div class="social-icons">
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-tiktok"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-discord"></i>
+                <i class="fab fa-facebook"></i>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <h4>Kontak Kami</h4>
+            <p>email: ichigostore@gmail.com</p>
+            <p>Whatsapp: +6281234567</p>
+            <p>Telegram: @ichigostore_cs</p>
+        </div>
+    </div>
+
+    <!-- Modal Login -->
+    <!-- Modal Login -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content">
+            <!-- Tombol Close (X) -->
+            <span class="close-modal" id="closeModal">&times;</span>
+            
+            <!-- Sisi Kiri (Hanya Menampilkan Background Gambar) -->
+            <div class="modal-left">
+                <!-- Sengaja dikosongkan karena teks sudah ada di dalam gambar aslimu -->
+            </div>
+
+            <!-- Sisi Kanan (Form Login) -->
+            <div class="modal-right">
+                <h2 class="login-title">Login</h2>
+                
+                <form class="login-form">
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="">
+                    </div>
+                    <div class="input-group">
+                        <label>Kata Sandi</label>
+                        <input type="password" placeholder="***">
+                    </div>
+                    <a href="#" class="forgot-password">Lupa Kata Sandi?</a>
+                    
+                    <button type="submit" class="btn-submit">Masuk</button>
+                </form>
+
+                <div class="divider">
+                    <span>or</span>
+                </div>
+
+                <div class="social-login">
+                    <button class="btn-social">
+                        <!-- Menggunakan icon FontAwesome agar anti-broken -->
+                        <i class="fab fa-google" style="color: #DB4437; font-size: 18px;"></i> Login dengan Google
+                    </button>
+                    <button class="btn-social">
+                        <i class="fab fa-facebook" style="color: #1877F2; font-size: 18px;"></i> Login dengan Facebook
+                    </button>
+                </div>
+
+                <p class="register-link">Belum punya akun? <a href="#">Daftar sekarang</a></p>
+            </div>
+        </div>
+    </div>  
+
+    <!-- Menghubungkan ke file JavaScript eksternal -->
+    <script src="script.js"></script>
+</body>
+</html>

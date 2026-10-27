@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Up Counter-Strike 2 - Ichigo Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* === RESET & HEADER === */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #2b1718; color: #ffffff; }
+        a { text-decoration: none; color: #fff; }
+        
+        header { background-color: #4a0d10; display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; }
+        .logo-header { font-weight: 700; font-size: 20px; display: flex; align-items: center; gap: 10px; }
+        .search-container { flex: 1; max-width: 500px; display: flex; background-color: #e0e0e0; border-radius: 20px; overflow: hidden; margin: 0 20px; }
+        .search-container input { width: 100%; border: none; padding: 10px 20px; outline: none; background: transparent; color: #333; }
+        .search-container button { background-color: #6d1c22; border: none; color: white; padding: 0 20px; cursor: pointer; }
+        .header-actions { display: flex; align-items: center; gap: 20px; }
+        .btn-login { background-color: #e0e0e0; color: #333; border: none; padding: 8px 25px; border-radius: 10px; font-weight: 600; cursor: pointer; }
+
+        /* === LAYOUT UTAMA (3 KOLOM) === */
+        .topup-container { display: grid; grid-template-columns: 280px 1fr 320px; gap: 20px; max-width: 1300px; margin: 30px auto; padding: 0 20px; }
+        .panel { background-color: #3b0a0d; border: 1px solid #7a1b22; border-radius: 10px; padding: 20px; margin-bottom: 20px; }
+
+        /* === KOLOM 1: INFO GAME === */
+        .game-banner { width: 100%; border-radius: 10px; margin-bottom: 15px; }
+        .game-info h2 { font-size: 18px; margin-bottom: 5px; }
+        .game-info p.publisher { font-size: 12px; color: #ccc; margin-bottom: 15px; }
+        .game-desc { font-size: 12px; color: #ccc; line-height: 1.6; margin-bottom: 15px; }
+        .badges span { background: #fff; color: #000; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; margin-right: 5px; }
+
+        /* === KOLOM 2: LANGKAH PEMBELIAN === */
+        .step-header { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid #7a1b22; padding-bottom: 10px; }
+        .step-number { background-color: #fff; color: #3b0a0d; width: 25px; height: 25px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 14px; font-weight: bold; }
+        
+        /* Step 1: Input ID */
+        .input-group { display: flex; gap: 10px; margin-bottom: 10px; }
+        .input-group input { flex: 1; padding: 12px; background-color: #5a151b; border: 1px solid #7a1b22; color: #fff; border-radius: 8px; outline: none; }
+        .help-btn { background-color: #fff; color: #000; border: none; padding: 5px 10px; border-radius: 15px; font-size: 10px; font-weight: bold; cursor: pointer; float: right; margin-top: -45px; }
+        .note { font-size: 10px; color: #ccc; text-align: center; }
+
+        /* Step 2: Pilih Jumlah */
+        .diamond-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .diamond-card { background-color: #5a151b; border: 1px solid #7a1b22; border-radius: 8px; padding: 10px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: 0.2s; }
+        .diamond-card:hover { border-color: #ffae00; }
+        .diamond-card img { width: 35px; }
+        .d-info h4 { font-size: 13px; margin-bottom: 2px; }
+        .d-info p { font-size: 12px; color: #ffae00; font-weight: bold; }
+
+        /* Step 3: Pembayaran */
+        .payment-layout { display: flex; gap: 15px; }
+        .pay-sidebar { flex: 1; display: flex; flex-direction: column; gap: 5px; border-right: 1px solid #7a1b22; padding-right: 10px; }
+        .pay-sidebar button { background: transparent; border: none; color: #fff; text-align: left; padding: 10px; font-size: 13px; cursor: pointer; border-radius: 5px; }
+        .pay-sidebar button:hover, .pay-sidebar button.active { background-color: #5a151b; font-weight: bold; border-left: 3px solid #ffae00; }
+        .pay-methods { flex: 2; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; align-content: start; }
+        .pay-card { background-color: #5a151b; border: 1px solid #7a1b22; padding: 10px; border-radius: 8px; display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        .pay-card:hover { border-color: #ffae00; }
+        .pay-card img { width: 30px; background: #fff; border-radius: 5px; padding: 2px; }
+        .pay-info h4 { font-size: 12px; }
+        .pay-info p { font-size: 11px; color: #ffae00; }
+
+        /* === KOLOM 3: CHECKOUT === */
+        .checkout-item { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 10px; color: #ccc; }
+        .checkout-item span:last-child { color: #fff; font-weight: bold; }
+        .email-input { width: 100%; padding: 10px; background-color: #5a151b; border: 1px solid #7a1b22; color: #fff; border-radius: 5px; margin-top: 10px; outline: none; }
+        .email-note { font-size: 10px; color: #aaa; margin: 5px 0 15px 0; background: #eed5b7; color: #000; padding: 5px; border-radius: 3px; }
+        .total-price { display: flex; justify-content: space-between; align-items: center; font-size: 18px; font-weight: bold; margin-bottom: 15px; border-top: 1px solid #7a1b22; padding-top: 15px; }
+        .btn-beli { width: 100%; background-color: #ffae00; color: #000; font-weight: bold; border: none; padding: 12px; border-radius: 5px; font-size: 16px; cursor: pointer; transition: 0.2s; }
+        .btn-beli:hover { background-color: #e69d00; }
+
+        /* Promo Box */
+        .promo-input { display: flex; gap: 5px; margin-bottom: 20px; }
+        .promo-input input { flex: 1; padding: 8px; background-color: #5a151b; border: 1px solid #7a1b22; color: #fff; border-radius: 5px; outline: none; }
+        .promo-input button { background-color: #ffae00; color: #000; font-weight: bold; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; }
+        .promo-empty { text-align: center; color: #ccc; font-size: 12px; }
+        .promo-empty i { font-size: 40px; color: #7a1b22; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-header">ICHIGOSTORE</div>
+        <div class="search-container">
+            <input type="text" placeholder="Cari diamond game favorit anda">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="header-actions">
+            <i class="fas fa-user"></i>
+            <i class="fas fa-bell"></i>
+            <button class="btn-login">Masuk</button>
+        </div>
+    </header>
+
+    <!-- Layout Utama -->
+    <div class="topup-container">
+        
+        <!-- KOLOM 1: Info Game -->
+        <div class="game-info">
+            <div class="panel">
+                <img src="imagas/CSGO.jpeg" alt="Counter-Strike 2" class="game-banner">
+                <div class="badges">
+                    <span><i class="fas fa-check-circle"></i> Distributor Resmi</span>
+                    <span><i class="fas fa-bolt"></i> Top Up Instan</span>
+                </div>
+                <h2 style="margin-top: 15px;">Counter-Strike 2</h2>
+                <p class="publisher">Valve</p>
+                
+                <p class="game-desc">Ichigo Store menawarkan layanan top up Steam Wallet Code yang mudah, aman, dan praktis untuk kebutuhan CS2 Anda.</p>
+                <p class="game-desc">Bayar dengan nyaman menggunakan E-Wallet (OVO, GoPay, DANA, ShopeePay), QRIS, Transfer Bank, SMS, OTC non-Bank, hingga Kartu Debit/Kredit.</p>
+                <p class="game-desc">Beli Steam Wallet dalam hitungan detik! Cukup masukkan Steam ID Anda, pilih nominal yang ingin dibeli, selesaikan pembayaran, dan kode/saldo akan langsung dikirimkan.</p>
+            </div>
+        </div>
+
+        <!-- KOLOM 2: Langkah Top-Up -->
+        <div class="steps-container">
+            
+            <!-- Step 1 -->
+            <div class="panel">
+                <div class="step-header">
+                    <div class="step-number">1</div> Masukkan Steam ID / Trade URL
+                </div>
+                <button class="help-btn"><i class="fas fa-question-circle"></i> Where To Find?</button>
+                <div class="input-group">
+                    <input type="text" placeholder="Masukkan Steam ID (mis. 76561198xxx)">
+                </div>
+                <p class="note">Untuk menemukan Steam ID Anda, buka profil Steam Anda. Steam ID berupa 17 digit angka yang terdapat pada URL profil Anda.</p>
+            </div>
+
+            <!-- Step 2: Pilih Jumlah -->
+            <div class="panel">
+                <div class="step-header">
+                    <div class="step-number">2</div> Pilih Nominal Steam Wallet
+                </div>
+                <div class="diamond-grid">
+                    <!-- Baris 1 -->
+                    <div class="diamond-card">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2850/2850974.png" alt="Steam Wallet">
+                        <div class="d-info">
+                            <h4>IDR 12.000</h4>
+                            <p>IDR 13.500</p>
+                        </div>
+                    </div>
+                    <div class="diamond-card">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2850/2850974.png" alt="Steam Wallet">
+                        <div class="d-info">
+                            <h4>IDR 45.000</h4>
+                            <p>IDR 48.000</p>
+                        </div>
+                    </div>
+                    <div class="diamond-card">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2850/2850974.png" alt="Steam Wallet">
+                        <div class="d-info">
+                            <h4>IDR 60.000</h4>
+                            <p>IDR 64.000</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Baris 2 -->
+                    <div class="diamond-card">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2850/2850974.png" alt="Steam Wallet">
+                        <div class="d-info">
+                            <h4>IDR 90.000</h4>
+                            <p>IDR 95.000</p>
+                        </div>
+                    </div>
+                    <div class="diamond-card">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2850/2850974.png" alt="Steam Wallet">
+                        <div class="d-info">
+                            <h4>IDR 120.000</h4>
+                            <p>IDR 128.000</p>
+                        </div>
+                    </div>
+                    <div class="diamond-card">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2850/2850974.png" alt="Steam Wallet">
+                        <div class="d-info">
+                            <h4>IDR 250.000</h4>
+                            <p>IDR 265.000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Metode Pembayaran -->
+            <div class="panel">
+                <div class="step-header">
+                    <div class="step-number">3</div> Pilih Metode Pembayaran
+                </div>
+                <div class="payment-layout">
+                    <!-- Sidebar Kiri -->
+                    <div class="pay-sidebar">
+                        <button class="active">E-Wallet</button>
+                        <button>Transfer Bank</button>
+                        <button>SMS</button>
+                        <button>OTC non-Bank</button>
+                        <button>Bank Online</button>
+                        <button>Kartu Debit/kredit</button>
+                    </div>
+                    <!-- Pilihan E-Wallet Kanan -->
+                    <div class="pay-methods">
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_ovo_purple.svg" alt="OVO">
+                            <div class="pay-info">
+                                <h4>OVO</h4>
+                                <p>IDR 64.000</p>
+                            </div>
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_QRIS.svg" alt="QRIS">
+                            <div class="pay-info">
+                                <h4>QRIS</h4>
+                                <p>IDR 64.000</p>
+                            </div>
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg" alt="ShopeePay">
+                            <div class="pay-info">
+                                <h4>ShopeePay</h4>
+                                <p>IDR 64.000</p>
+                            </div>
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Gopay_logo.svg" alt="Gopay">
+                            <div class="pay-info">
+                                <h4>Gopay</h4>
+                                <p>IDR 64.000</p>
+                            </div>
+                        </div>
+                        <div class="pay-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.svg" alt="Dana">
+                            <div class="pay-info">
+                                <h4>Dana</h4>
+                                <p>IDR 64.000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- KOLOM 3: Checkout -->
+        <div class="checkout-container">
+            <!-- Box Checkout -->
+            <div class="panel">
+                <h3 style="margin-bottom: 15px; border-bottom: 1px solid #7a1b22; padding-bottom: 10px;">Checkout</h3>
+                
+                <div class="checkout-item">
+                    <span>Item</span>
+                    <span>Steam Wallet IDR 60.000</span>
+                </div>
+                <div class="checkout-item">
+                    <span>Payment</span>
+                    <span>DANA</span>
+                </div>
+                
+                <input type="email" placeholder="Alamat Email (opsional)" class="email-input">
+                <p class="email-note">Harap mengisi email apabila ingin bukti pembayaran</p>
+                
+                <div class="total-price">
+                    <span>Total</span>
+                    <span>IDR 64.000</span>
+                </div>
+                
+                <button class="btn-beli">Beli Sekarang</button>
+            </div>
+
+            <!-- Box Promo -->
+            <div class="panel">
+                <h3 style="margin-bottom: 15px;">Promo & deals</h3>
+                <div class="promo-input">
+                    <input type="text" placeholder="enter discount code">
+                    <button>Apply</button>
+                </div>
+                <div class="promo-empty">
+                    <i class="fas fa-ticket-alt"></i>
+                    <h4>No Voucher Available</h4>
+                    <p style="margin-top: 5px;">Input discount code in the field above.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

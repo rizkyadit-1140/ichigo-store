@@ -1,0 +1,433 @@
+/* Palet Warna Sesuai Figma */
+:root {
+    --bg-dark: #271010;       /* Latar belakang utama (Sangat gelap) */
+    --navbar-bg: #3a1111;     /* Latar navbar & footer */
+    --card-red: #a82a2a;      /* Warna merah pada kartu game */
+    --text-light: #ffffff;
+    --text-grey: #cccccc;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    margin: 0;
+    padding: 0;
+}
+
+/* --- NAVIGASI (HEADER) --- */
+.navbar {
+    background-color: var(--navbar-bg);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #4a1c1c;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-light);
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar {
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    width: 400px;
+    outline: none;
+    background-color: #e8e8e8;
+    font-size: 14px;
+    color: #333;
+}
+
+.search-icon {
+    position: absolute;
+    right: 5px;
+    background-color: var(--navbar-bg);
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-right i {
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.nav-right i:hover {
+    color: #ffcccc;
+}
+
+.btn-login {
+    background-color: #e8e8e8;
+    color: #333;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-login:hover {
+    background-color: #ffffff;
+}
+
+/* --- WADAH KONTEN UTAMA --- */
+.container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* --- BANNER UTAMA (HERO) --- */
+.hero-banner {
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    background-color: #5a1e1e;
+    min-height: 250px;
+}
+
+.hero-banner img {
+    width: 100%;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.dots {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.dot {
+    height: 8px;
+    width: 8px;
+    background-color: #555;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active, .dot:hover {
+    background-color: #fff;
+}
+
+/* --- JUDUL SECTION --- */
+.section-title {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: normal;
+    border-bottom: 1px solid #555;
+    padding-bottom: 10px;
+}
+
+/* --- GRID KATALOG GAME --- */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* --- DESAIN KARTU GAME --- */
+a.game-card {
+    background-color: var(--card-red);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+}
+
+.game-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.game-title {
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* --- FOOTER --- */
+.footer {
+    background-color: var(--navbar-bg);
+    padding: 40px;
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 20px;
+    font-size: 12px;
+    color: var(--text-grey);
+}
+
+.footer h4 {
+    color: var(--text-light);
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.footer-logo {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-light);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.payment-icons, .social-icons {
+    display: flex;
+    gap: 10px;
+    font-size: 20px;
+}
+
+.social-icons i {
+    cursor: pointer;
+}
+
+.contact-info p {
+    margin: 5px 0;
+}
+
+/* --- MODAL LOGIN --- */
+.modal-overlay {
+    display: none; /* Disembunyikan secara default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Background gelap transparan */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    width: 800px;
+    /* Ubah height tetap menjadi min-height agar kotak menyesuaikan isi dan tidak terpotong */
+    min-height: 520px; 
+    border-radius: 20px;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    color: #999;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+/* Bagian Kiri */
+/* Bagian Kiri */
+.modal-left {
+    width: 45%;
+    background-color: #5a0b0b; 
+    /* Memuat gambar Jett */
+    background-image:  url('imagas/jett.png');
+    background-size: cover;
+    background-position: bottom center; /* DIUBAH: Agar karakter nempel di bawah dan tidak terpotong */
+    background-repeat: no-repeat;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+}
+
+.modal-logo {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.modal-left h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.modal-left p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Bagian Kanan */
+.modal-right {
+    width: 55%;
+    background-color: #fff; 
+    padding: 50px 40px; /* Tambah padding atas agar teks Login tidak menabrak tombol X */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 25px;
+    color: #000;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #e5e5e5;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.forgot-password {
+    display: block;
+    font-size: 12px;
+    color: #e04a4a;
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+.btn-submit {
+    width: 100%;
+    background-color: #f7931e; /* Warna orange */
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.divider {
+    text-align: center;
+    position: relative;
+    margin: 15px 0;
+}
+
+.divider span {
+    background-color: #fffaf9;
+    padding: 0 10px;
+    color: #999;
+    font-size: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    z-index: 0;
+}
+
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-social {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.btn-social img {
+    width: 18px;
+}
+
+.register-link {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 20px;
+    color: #555;
+}
+
+.register-link a {
+    color: #e04a4a;
+    text-decoration: underline;
+    font-weight: bold;
+}
