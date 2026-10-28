@@ -116,4 +116,63 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+    // === 5. KODE UNTUK FITUR KODE PROMO (DISCOUNT) ===
+    const promoInput = document.querySelector('.promo-input input');
+    const btnPromo = document.querySelector('.promo-input button');
+    const totalPriceEl = document.querySelector('.total-price span:last-child');
+    
+    // Variabel untuk mencegah user pakai diskon berkali-kali
+    let isPromoApplied = false; 
+
+    if (btnPromo && promoInput && totalPriceEl) {
+        btnPromo.addEventListener('click', () => {
+            const promoCode = promoInput.value.trim().toUpperCase();
+
+            // 1. Cek apakah input kosong
+            if (promoCode === "") {
+                alert("⚠️ Masukkan kode promo terlebih dahulu!");
+                return;
+            }
+
+            // 2. Cek apakah promo sudah pernah dipakai di transaksi ini
+            if (isPromoApplied) {
+                alert("⚠️ Kode promo sudah digunakan!");
+                return;
+            }
+
+            // 3. Validasi daftar kode promo yang tersedia
+            if (promoCode === "ICHIGOUTS" || promoCode === "RIZKYBOSS") {
+                // Ambil harga saat ini (misal teksnya: "IDR 15.000")
+                let currentPriceText = totalPriceEl.innerText;
+                
+                // Hapus tulisan "IDR " dan titik biar angkanya bisa dihitung
+                let priceNumber = parseInt(currentPriceText.replace('IDR ', '').replace(/\./g, ''));
+
+                // Berikan diskon (misal potong Rp 5.000)
+                let discount = 5000;
+                let newPrice = priceNumber - discount;
+
+                // Jangan sampai harganya jadi minus
+                if (newPrice < 0) newPrice = 0;
+
+                // Format kembali angkanya jadi bentuk Rupiah (contoh: IDR 10.000)
+                // Menggunakan 'id-ID' agar otomatis pakai pemisah titik
+                let formattedPrice = 'IDR ' + newPrice.toLocaleString('id-ID');
+
+                // Update teks harga di layar checkout
+                totalPriceEl.innerText = formattedPrice;
+                
+                // Kunci status promo agar tidak bisa dipakai 2 kali
+                isPromoApplied = true;
+
+                // Notifikasi sukses dan kosongkan kolom input
+                alert(`🎉 Hore! Kode promo ${promoCode} berhasil digunakan!\nKamu mendapat potongan harga sebesar Rp 5.000.`);
+                promoInput.value = ""; 
+                
+            } else {
+                // Jika kodenya salah
+                alert("❌ Kode promo tidak valid atau sudah kadaluarsa.");
+            }
+        });
+    }
 });
