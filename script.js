@@ -91,4 +91,29 @@ document.addEventListener('DOMContentLoaded', () => {
             location.reload();
         });
     }
+    // === 4. KODE UNTUK LIVE SEARCH (FITUR CARI GAME) ===
+    const searchInput = document.querySelector('.search-container input');
+    const gameCards = document.querySelectorAll('.game-card');
+
+    if (searchInput && gameCards.length > 0) {
+        // Gunakan event 'input' agar bereaksi setiap kali user mengetik
+        searchInput.addEventListener('input', (e) => {
+            const searchText = e.target.value.toLowerCase();
+
+            gameCards.forEach(card => {
+                // Ambil teks judul game dari class .game-title
+                const titleElement = card.querySelector('.game-title'); 
+                
+                if (titleElement) {
+                    const title = titleElement.innerText.toLowerCase();
+                    // Jika judul mengandung huruf yang diketik, tampilkan. Jika tidak, sembunyikan.
+                    if (title.includes(searchText)) {
+                        card.style.display = 'block'; 
+                    } else {
+                        card.style.display = 'none'; 
+                    }
+                }
+            });
+        });
+    }
 });
