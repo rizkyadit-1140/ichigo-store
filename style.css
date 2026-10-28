@@ -171,9 +171,27 @@ a.game-card {
     text-decoration: none;
     color: #ffffff;
 }
+.game-card {
+    /* Membuat pergerakannya halus selama 0.3 detik */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
 
 .game-card:hover {
-    transform: translateY(-5px);
+    /* Mengangkat kartu ke atas sejauh 8 pixel */
+    transform: translateY(-8px); 
+    /* Memberikan bayangan cahaya warna emas di bawah kartu */
+    box-shadow: 0 12px 20px rgba(255, 174, 0, 0.4); 
+    /* Mengubah warna border jadi emas */
+    border-color: #ffae00;
+}
+
+.game-card:hover {
+    /* Mengangkat kartu ke atas sejauh 8 pixel */
+    transform: translateY(-8px); 
+    /* Memberikan bayangan cahaya warna emas di bawah kartu */
+    box-shadow: 0 12px 20px rgba(255, 174, 0, 0.4); 
+    /* Mengubah warna border jadi emas */
+    border-color: #ffae00;
 }
 
 .game-img {
