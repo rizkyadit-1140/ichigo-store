@@ -64,4 +64,31 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    // === 3. KODE UNTUK VALIDASI FORM BELI ===
+    const btnBeli = document.querySelector('.btn-beli');
+
+    if (btnBeli) {
+        btnBeli.addEventListener('click', (e) => {
+            e.preventDefault(); // Mencegah halaman reload
+
+            // Cari input ID Pengguna / UID di halaman tersebut
+            // Menyesuaikan dengan berbagai jenis input ID di halaman game (ML, Genshin, FF, dll)
+            const inputId = document.querySelector('.input-group input'); 
+            const selectedItem = document.querySelector('.checkout-item span:last-child')?.innerText;
+            const selectedPayment = document.querySelectorAll('.checkout-item')[1]?.querySelectorAll('span')[1]?.innerText;
+
+            // Validasi: Cek apakah input ID kosong
+            if (!inputId || inputId.value.trim() === "") {
+                alert("⚠️ Mohon masukkan ID Pengguna atau UID terlebih dahulu sebelum membeli!");
+                if (inputId) inputId.focus(); // Mengarahkan kursor langsung ke kotak input ID
+                return;
+            }
+
+            // Jika sudah diisi, tampilkan konfirmasi sukses
+            alert(`🎉 Berhasil!\n\nDetail Pesanan:\n- Item: ${selectedItem}\n- Pembayaran: ${selectedPayment}\n- ID: ${inputId.value}\n\nTerima kasih telah berbelanja di Ichigo Store!`);
+            
+            // Opsional: Reload halaman setelah klik OK pada alert untuk mereset form
+            location.reload();
+        });
+    }
 });
