@@ -175,4 +175,73 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+// === 6. KODE SIMULASI LOGIN & GANTI STATE HEADER ===
+    const authContainer = document.querySelector('#auth-container');
+    
+    // Cek saat halaman dimuat, apakah user sudah login sebelumnya
+    document.addEventListener("DOMContentLoaded", () => {
+        const savedUser = localStorage.getItem("ichigo_username");
+        if (savedUser && authContainer) {
+            renderUserProfile(savedUser);
+        }
+    });
+
+    // Fungsi untuk mengubah tombol login menjadi Profil & Nama
+    function renderUserProfile(username) {
+        if (!authContainer) return;
+        
+        authContainer.innerHTML = `
+            <div class="user-profile-nav" style="display: flex; align-items: center; gap: 8px; cursor: pointer;" title="Klik untuk Logout">
+                <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=${username}" alt="Avatar" style="width: 32px; height: 32px; border-radius: 50%; background: #fff; padding: 2px;">
+                <span style="font-size: 13px; font-weight: 600; color: #fff;">${username}</span>
+            </div>
+        `;
+
+        // Klik profil untuk Logout (keluar akun)
+        const profileNav = authContainer.querySelector('.user-profile-nav');
+        profileNav.addEventListener('click', () => {
+            if (confirm("Apakah kamu ingin keluar (logout)?")) {
+                localStorage.removeItem("ichigo_username");
+                location.reload();
+            }
+        });
+    }
+    // === 7. MENANGKAP INPUT DARI FORM LOGIN MODAL (SESUAI HTML) ===
+    const loginForm = document.querySelector('.login-form');
+    
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Mencegah halaman reload
+            
+            // Ambil input email dari form
+            const emailInput = loginForm.querySelector('input[type="email"]');
+            
+            if (emailInput && emailInput.value.trim() !== "") {
+                const emailValue = emailInput.value.trim();
+                
+                // Ambil teks sebelum tanda '@' untuk dijadikan nama user (contoh: budi@gmail.com -> Budi)
+                let username = emailValue.split('@')[0];
+                username = username.charAt(0).toUpperCase() + username.slice(1);
+                
+                // Simpan ke localStorage browser
+                localStorage.setItem("ichigo_username", username);
+                
+                // Render ulang tampilan header menjadi foto profil & nama
+                renderUserProfile(username);
+                
+                // Tutup modal pop-up login
+                // Pastikan variabel/selector modal login kamu sesuai (misal: .modal-overlay atau #loginModal)
+                const loginModal = document.querySelector('#loginModal') || document.querySelector('.modal'); 
+                if (loginModal) {
+                    loginModal.style.display = 'none';
+                }
+                
+                // Reset form
+                loginForm.reset();
+            } else {
+                alert("⚠️ Mohon masukkan email terlebih dahulu!");
+            }
+        });
+    }
+
 });
