@@ -87,10 +87,12 @@
             <input type="text" placeholder="Cari diamond game favorit anda">
             <button><i class="fas fa-search"></i></button>
         </div>
-        <div class="header-actions">
-            <i class="fas fa-user"></i>
-            <i class="fas fa-bell"></i>
-            <button class="btn-login">Masuk</button>
+        <div class="nav-right" style="display: flex; align-items: center; gap: 15px;">
+            <i class="fas fa-user" title="Profil" style="color: white; font-size: 18px; cursor: pointer;"></i>
+            <i class="fas fa-bell" title="Notifikasi" style="color: white; font-size: 18px; cursor: pointer;"></i>
+            <div id="auth-container">
+                <button class="btn-login" id="loginBtn">Masuk</button>
+            </div>
         </div>
     </header>
 

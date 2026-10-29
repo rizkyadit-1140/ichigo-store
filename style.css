@@ -482,3 +482,74 @@ a.game-card {
         overflow-x: auto; /* Agar tombol e-wallet bisa digeser (swipe) ke samping */
     }
 }
+/* === STYLING FOOTER === */
+.footer-store {
+    background-color: #4E0510; /* Warna marun gelap yang senada dengan header */
+    color: #ffffff;
+    padding: 40px 20px 20px 20px;
+    margin-top: 50px;
+    border-top: 2px solid #ffae00; /* Garis aksen emas di atas footer */
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    /* Pastikan baris ini ada agar bagian-bagian footer berjajar ke samping, bukan ke bawah */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-store h3 {
+    color: #ffae00; /* Warna teks judul aksen emas */
+    margin-bottom: 10px;
+}
+
+.footer-store h4 {
+    color: #ffae00;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.footer-store p {
+    font-size: 14px;
+    color: #e0e0e0;
+    line-height: 1.5;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #ffae00; /* Berubah jadi emas saat kursor diarahkan */
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 13px;
+    color: #d1d1d1;
+}
+
+/* Penyesuaian Footer untuk Mobile */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
